@@ -1,0 +1,81 @@
+:root {
+    --theme-background-alpha: rgba(15, 39, 54, 0.8);
+    --vuetify-secondary: #f8ab32;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.action-btn {
+    margin: 20px 20px 20px 0px;
+    float: right;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.padding-x-10p {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.horizontal-center {
+    margin: 0;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.vertical-center {
+    display: flex;
+    justify-content: center;
+}
+
+.bg-color-transparent {
+    background-color: transparent;
+}
+
+.bg-color-vuetifybackground {
+    background-color: #112B3C;
+}
+
+.overlap-banner {
+    position: absolute;
+    z-index: 2;
+}
+
+.mobile-toolbar {
+    width: 100vw;
+    display: flex;
+    padding-right: 20px;
+    align-items: center;
+}
+
+.justify-end {
+    justify-content: end;
+}
+
+.justify-space-between {
+    justify-content: space-between;
+}
+
+.fade-in-image {
+    animation: fadeIn 500ms;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.margin-bottom-20p {
+    margin-bottom: 20px;
+}
