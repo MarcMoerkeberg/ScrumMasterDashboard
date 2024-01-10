@@ -1,0 +1,10 @@
+
+.vs/
+
+node_modules/
+
+scrummasterdashboard.client/obj/
+
+ScrumMasterDashboard.Api/bin/
+
+ScrumMasterDashboard.Api/obj/
