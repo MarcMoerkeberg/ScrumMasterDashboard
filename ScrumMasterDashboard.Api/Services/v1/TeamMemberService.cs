@@ -1,4 +1,4 @@
-﻿using ScrumMasterDashboard.Api.DAL.Entities;
+﻿using ScrumMasterDashboard.Api.DataAccess.Entities;
 using ScrumMasterDashboard.Api.Repositories.v1.Interfaces;
 using ScrumMasterDashboard.Api.Services.v1.Interfaces;
 

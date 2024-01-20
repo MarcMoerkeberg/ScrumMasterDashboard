@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ScrumMasterDashboard.Api.DAL.Entities
+namespace ScrumMasterDashboard.Api.DataAccess.Entities
 {
 	[Table("TeamMembers")]
 	public class TeamMember

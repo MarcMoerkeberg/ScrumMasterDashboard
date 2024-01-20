@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ScrumMasterDashboard.Api.DAL.Entities;
+using ScrumMasterDashboard.Api.DataAccess.Entities;
 
-namespace ScrumMasterDashboard.Api.DAL
+namespace ScrumMasterDashboard.Api.DataAccess
 {
 	public class DatabaseContext : DbContext
 	{

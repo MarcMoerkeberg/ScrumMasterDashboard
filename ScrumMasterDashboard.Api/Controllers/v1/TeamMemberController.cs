@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using ScrumMasterDashboard.Api.DAL.Entities;
+using ScrumMasterDashboard.Api.DataAccess.Entities;
 using ScrumMasterDashboard.Api.Services.v1.Interfaces;
 
 namespace ScrumMasterDashboard.Api.Controllers.v1

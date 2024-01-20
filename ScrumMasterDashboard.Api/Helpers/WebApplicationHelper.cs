@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using ScrumMasterDashboard.Api.DAL;
+using ScrumMasterDashboard.Api.DataAccess;
 using ScrumMasterDashboard.Api.Models.AppSettings;
 using ScrumMasterDashboard.Api.Models.Enums;
 using System.Globalization;
