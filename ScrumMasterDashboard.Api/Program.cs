@@ -9,6 +9,7 @@ builder.Services.AddVersioning();
 builder.Services.AddSwagger();
 builder.Services.AddDatabaseContext();
 builder.Services.AddDependencyInjection();
+builder.Services.AddLocalizationCultures();
 
 WebApplication app = builder.Build();
 app.UseHttpsRedirection();

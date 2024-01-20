@@ -14,11 +14,16 @@ namespace ScrumMasterDashboard.Api.Helpers
 {
 	public static class WebApplicationHelper
 	{
-		private static RequestCulture DefaultRequestCulture { get; } = new RequestCulture("en-US");
-		private static List<CultureInfo> SupportedCultures { get; } = new List<CultureInfo>
+		private static readonly RequestCulture _defaultCulture = new RequestCulture("en-US");
+		private static readonly List<CultureInfo> _supportedCultures = new List<CultureInfo>
 		{
 			new CultureInfo("en-US"),
 			new CultureInfo("da-DK"),
+		};
+		private static readonly RequestLocalizationOptions _requestLocalizationOptions = new RequestLocalizationOptions
+		{
+			DefaultRequestCulture = _defaultCulture,
+			SupportedCultures = _supportedCultures
 		};
 
 		/// <summary>
@@ -137,6 +142,16 @@ namespace ScrumMasterDashboard.Api.Helpers
 			return classesThatImplementsAnInterface;
 		}
 
+		public static void AddLocalizationCultures(this IServiceCollection services)
+		{
+			services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+			services.Configure<RequestLocalizationOptions>(configureOptions =>
+			{
+				configureOptions = _requestLocalizationOptions;
+			});
+		}
+
 		/// <summary>
 		/// Applies UseSwagger and UseSwaggerUI to the application.<br/>
 		/// Creates swagger endpoints for each ApiVersion.
@@ -160,17 +175,15 @@ namespace ScrumMasterDashboard.Api.Helpers
 			});
 		}
 
-		/// <summary>
-		/// Adds localization to all requests using the <see cref="SupportedCultures"/>.
-		/// </summary>
-		/// <param name="app"></param>
 		public static void UseLocalization(this WebApplication app)
 		{
-			app.UseRequestLocalization(options =>
-			{
-				options.DefaultRequestCulture = DefaultRequestCulture;
-				options.SupportedCultures = SupportedCultures;
-			});
+
+			RequestLocalizationOptions localizationOptions = app
+				.Services
+				.GetService<IOptions<RequestLocalizationOptions>>()?
+				.Value ?? _requestLocalizationOptions;
+
+			app.UseRequestLocalization(localizationOptions);
 		}
 	}
 }

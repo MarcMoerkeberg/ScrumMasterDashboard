@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using ScrumMasterDashboard.Api.DataAccess.Entities;
+using ScrumMasterDashboard.Api.Resources;
 using ScrumMasterDashboard.Api.Services.v1.Interfaces;
 
 namespace ScrumMasterDashboard.Api.Controllers.v1
@@ -17,9 +17,9 @@ namespace ScrumMasterDashboard.Api.Controllers.v1
 		}
 
 		[HttpGet]
-		public async Task<TeamMember> Get(int teamMemberId)
+		public async Task<string> Get(int teamMemberId)
 		{
-			throw new NotImplementedException();
+			return Shared.Hello;
 		}
 	}
 }
