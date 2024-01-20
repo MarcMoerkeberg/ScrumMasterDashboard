@@ -1,7 +1,9 @@
 ﻿using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using ScrumMasterDashboard.Api.DAL;
 using ScrumMasterDashboard.Api.Models.AppSettings;
 
 namespace ScrumMasterDashboard.Api.Helpers
@@ -28,6 +30,16 @@ namespace ScrumMasterDashboard.Api.Helpers
 			{
 				options.GroupNameFormat = "'v'VVV";
 				options.SubstituteApiVersionInUrl = true;
+			});
+		}
+
+		public static void AddDatabaseContext(this IServiceCollection services)
+		{
+			AppSettings appSettings = services.BuildServiceProvider().GetRequiredService<IOptions<AppSettings>>().Value;
+
+			services.AddDbContext<DatabaseContext>(options =>
+			{
+				options.UseSqlServer(appSettings.ConnectionStrings.Database);
 			});
 		}
 

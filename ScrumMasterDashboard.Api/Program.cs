@@ -7,6 +7,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddVersioning();
 builder.Services.AddSwagger();
+builder.Services.AddDatabaseContext();
 
 WebApplication app = builder.Build();
 app.UseHttpsRedirection();
