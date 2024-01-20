@@ -35,6 +35,10 @@ namespace ScrumMasterDashboard.Api.Helpers
 			});
 		}
 
+		/// <summary>
+		/// Adds the database context and connection for <see cref="DatabaseContext"/>.
+		/// </summary>
+		/// <param name="services"></param>
 		public static void AddDatabaseContext(this IServiceCollection services)
 		{
 			AppSettings appSettings = services.BuildServiceProvider().GetRequiredService<IOptions<AppSettings>>().Value;
@@ -45,6 +49,10 @@ namespace ScrumMasterDashboard.Api.Helpers
 			});
 		}
 
+		/// <summary>
+		/// Adds all the swagger documents to the API for each ApiVersion.
+		/// </summary>
+		/// <param name="services"></param>
 		public static void AddSwagger(this IServiceCollection services)
 		{
 			IReadOnlyList<ApiVersionDescription> apiDescriptiontions = services.BuildServiceProvider().GetRequiredService<IApiVersionDescriptionProvider>().ApiVersionDescriptions;
@@ -66,6 +74,10 @@ namespace ScrumMasterDashboard.Api.Helpers
 			});
 		}
 
+		/// <summary>
+		/// Adds dependency injection with scoped lifetime to all collectiontypes contained within <see cref="CollectionType"/>.
+		/// </summary>
+		/// <param name="services"></param>
 		public static void AddDependencyInjection(this IServiceCollection services)
 		{
 			var collectionTypes = Enum.GetValues(typeof(CollectionType)).Cast<CollectionType>();
@@ -76,6 +88,11 @@ namespace ScrumMasterDashboard.Api.Helpers
 			}
 		}
 
+		/// <summary>
+		/// Applies dependency injection to all assembly classes that require it, with scoped lifetime.
+		/// </summary>
+		/// <param name="services"></param>
+		/// <param name="collectionType">Type of collection to implement dependency injection for.</param>
 		private static void ApplyDependencyInjection(IServiceCollection services, CollectionType collectionType)
 		{
 			IEnumerable<Type> classesThatImplementsAnInterface = AssemblyTypesThatImplementsInterfaces(collectionType);
@@ -91,6 +108,14 @@ namespace ScrumMasterDashboard.Api.Helpers
 			}
 		}
 
+		/// <summary>
+		/// Uses <see cref="Assembly.GetExecutingAssembly"/> to find all types within the application that fits the following criteria:<br/>
+		/// - Is a class.<br/>
+		/// - Implements at least one interface.<br/>
+		/// - <paramref name="collectionType"/> is contained within it's typename.
+		/// </summary>
+		/// <param name="collectionType">Assumes the class contains this type in it's name.</param>
+		/// <returns>An IEnumerable with all types in assembly that requires dependency injection.</returns>
 		private static IEnumerable<Type> AssemblyTypesThatImplementsInterfaces(CollectionType collectionType)
 		{
 			IEnumerable<Type> classesThatImplementsAnInterface = Assembly
@@ -104,6 +129,11 @@ namespace ScrumMasterDashboard.Api.Helpers
 			return classesThatImplementsAnInterface;
 		}
 
+		/// <summary>
+		/// Applies UseSwagger and UseSwaggerUI to the application.<br/>
+		/// Creates swagger endpoints for each ApiVersion.
+		/// </summary>
+		/// <param name="app"></param>
 		public static void ApplySwagger(this WebApplication app)
 		{
 			AppSettings appSettings = app.Configuration.Get<AppSettings>() ?? new AppSettings();
