@@ -5,6 +5,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using ScrumMasterDashboard.Api.DAL;
 using ScrumMasterDashboard.Api.Models.AppSettings;
+using ScrumMasterDashboard.Api.Models.Enums;
+using System.Reflection;
 
 namespace ScrumMasterDashboard.Api.Helpers
 {
@@ -62,6 +64,44 @@ namespace ScrumMasterDashboard.Api.Helpers
 					options.SwaggerDoc(apiDescriptiontion.GroupName, openApiInfo);
 				}
 			});
+		}
+
+		public static void AddDependencyInjection(this IServiceCollection services)
+		{
+			var collectionTypes = Enum.GetValues(typeof(CollectionType)).Cast<CollectionType>();
+
+			foreach (CollectionType collectionType in collectionTypes)
+			{
+				ApplyDependencyInjection(services, collectionType);
+			}
+		}
+
+		private static void ApplyDependencyInjection(IServiceCollection services, CollectionType collectionType)
+		{
+			IEnumerable<Type> classesThatImplementsAnInterface = AssemblyTypesThatImplementsInterfaces(collectionType);
+
+			foreach (Type classType in classesThatImplementsAnInterface)
+			{
+				var implementedInterfaces = classType.GetInterfaces();
+
+				foreach (Type interfaceType in implementedInterfaces)
+				{
+					services.AddScoped(interfaceType, classType);
+				}
+			}
+		}
+
+		private static IEnumerable<Type> AssemblyTypesThatImplementsInterfaces(CollectionType collectionType)
+		{
+			IEnumerable<Type> classesThatImplementsAnInterface = Assembly
+				.GetExecutingAssembly()
+				.GetTypes()
+				.Where(type => type.IsClass &&
+					type.GetInterfaces().Length > 0 &&
+					type.Name.Contains(collectionType.ToString(), StringComparison.InvariantCultureIgnoreCase)
+				);
+
+			return classesThatImplementsAnInterface;
 		}
 
 		public static void ApplySwagger(this WebApplication app)
