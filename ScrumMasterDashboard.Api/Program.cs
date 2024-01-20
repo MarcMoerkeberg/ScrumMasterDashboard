@@ -15,6 +15,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 app.ApplySwagger();
+app.UseLocalization();
 
 if (app.Environment.IsDevelopment())
 {
