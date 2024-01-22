@@ -142,6 +142,11 @@ namespace ScrumMasterDashboard.Api.Helpers
 			return classesThatImplementsAnInterface;
 		}
 
+		/// <summary>
+		/// Adds request localization resourcepath and <see cref="RequestLocalizationOptions"/> to the application.<br/><br/>
+		/// Assues that the resource files are located in a project root-folder named "Resources".
+		/// </summary>
+		/// <param name="services"></param>
 		public static void AddLocalizationCultures(this IServiceCollection services)
 		{
 			services.AddLocalization(options => options.ResourcesPath = "Resources");
@@ -175,13 +180,16 @@ namespace ScrumMasterDashboard.Api.Helpers
 			});
 		}
 
+		/// <summary>
+		/// Applies the configured <see cref="RequestLocalizationOptions"/> via UseRequestLocalization to the application.
+		/// </summary>
+		/// <param name="app"></param>
 		public static void UseLocalization(this WebApplication app)
 		{
 
-			RequestLocalizationOptions localizationOptions = app
-				.Services
-				.GetService<IOptions<RequestLocalizationOptions>>()?
-				.Value ?? _requestLocalizationOptions;
+			RequestLocalizationOptions localizationOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>()
+				?.Value 
+				?? _requestLocalizationOptions;
 
 			app.UseRequestLocalization(localizationOptions);
 		}
