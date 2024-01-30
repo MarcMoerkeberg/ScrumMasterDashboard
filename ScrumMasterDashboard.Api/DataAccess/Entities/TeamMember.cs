@@ -11,7 +11,7 @@ namespace ScrumMasterDashboard.Api.DataAccess.Entities
 		public int Id { get; set; }
 
 		[Required]
-		[StringLength(50)]
+		[MaxLength(100)]
 		public string Name { get; set; } = string.Empty;
 	}
 }
