@@ -1,31 +1,18 @@
 ﻿using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using ScrumMasterDashboard.Api.DataAccess;
 using ScrumMasterDashboard.Api.Models.AppSettings;
 using ScrumMasterDashboard.Api.Models.Enums;
-using System.Globalization;
+using ScrumMasterDashboard.Api.Resources;
 using System.Reflection;
 
 namespace ScrumMasterDashboard.Api.Helpers
 {
 	public static class WebApplicationHelper
 	{
-		private static readonly RequestCulture _defaultCulture = new RequestCulture("en-US");
-		private static readonly List<CultureInfo> _supportedCultures = new List<CultureInfo>
-		{
-			new CultureInfo("en-US"),
-			new CultureInfo("da-DK"),
-		};
-		private static readonly RequestLocalizationOptions _requestLocalizationOptions = new RequestLocalizationOptions
-		{
-			DefaultRequestCulture = _defaultCulture,
-			SupportedCultures = _supportedCultures
-		};
-
 		/// <summary>
 		/// Adds API versioning to the application
 		/// </summary>
@@ -153,7 +140,7 @@ namespace ScrumMasterDashboard.Api.Helpers
 
 			services.Configure<RequestLocalizationOptions>(configureOptions =>
 			{
-				configureOptions = _requestLocalizationOptions;
+				configureOptions = SupportedCultures.LocalizationOptions;
 			});
 		}
 
@@ -186,12 +173,9 @@ namespace ScrumMasterDashboard.Api.Helpers
 		/// <param name="app"></param>
 		public static void UseLocalization(this WebApplication app)
 		{
+			RequestLocalizationOptions? localizationOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>()?.Value;
 
-			RequestLocalizationOptions localizationOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>()
-				?.Value
-				?? _requestLocalizationOptions;
-
-			app.UseRequestLocalization(localizationOptions);
+			app.UseRequestLocalization(localizationOptions ?? SupportedCultures.LocalizationOptions);
 		}
 	}
 }
