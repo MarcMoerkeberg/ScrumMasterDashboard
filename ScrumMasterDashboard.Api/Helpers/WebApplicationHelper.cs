@@ -188,7 +188,7 @@ namespace ScrumMasterDashboard.Api.Helpers
 		{
 
 			RequestLocalizationOptions localizationOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>()
-				?.Value 
+				?.Value
 				?? _requestLocalizationOptions;
 
 			app.UseRequestLocalization(localizationOptions);
