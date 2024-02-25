@@ -1,10 +1,10 @@
-﻿using ScrumMasterDashboard.Api.DataAccess.Entities;
+﻿using ScrumMasterDashboard.Api.Models.Entities;
 using ScrumMasterDashboard.Api.Repositories.v1.Interfaces;
 using ScrumMasterDashboard.Api.Services.v1.Interfaces;
 
 namespace ScrumMasterDashboard.Api.Services.v1
 {
-	public class TeamMemberService : ITeamMemberService
+    public class TeamMemberService : ITeamMemberService
 	{
 		private readonly ITeamMemberRepository _teamMemberRepository;
 

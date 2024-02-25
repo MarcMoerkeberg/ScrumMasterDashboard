@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ScrumMasterDashboard.Api.DataAccess.Entities;
+using ScrumMasterDashboard.Api.Models.Entities;
 
 namespace ScrumMasterDashboard.Api.DataAccess
 {
-	public class DatabaseContext : DbContext
+    public class DatabaseContext : DbContext
 	{
 		public DbSet<TeamMember> TeamMembers { get; set; }
 

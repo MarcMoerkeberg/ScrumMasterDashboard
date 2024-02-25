@@ -1,7 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using ScrumMasterDashboard.Api.DataAccess;
-using ScrumMasterDashboard.Api.DataAccess.Entities;
+using ScrumMasterDashboard.Api.Models.Entities;
 using ScrumMasterDashboard.Api.Services.v1.Interfaces;
 
 namespace ScrumMasterDashboard.Api.Controllers.v1
@@ -29,8 +29,8 @@ namespace ScrumMasterDashboard.Api.Controllers.v1
 			}
 			catch (Exception e)
 			{
-                Console.WriteLine(e);
-                throw;
+				Console.WriteLine(e);
+				throw;
 			}
 		}
 	}
