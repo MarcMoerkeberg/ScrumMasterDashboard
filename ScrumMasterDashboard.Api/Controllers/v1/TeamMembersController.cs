@@ -9,12 +9,12 @@ namespace ScrumMasterDashboard.Api.Controllers.v1
 {
 	[ApiController]
 	[ApiVersion("1.0")]
-	[Route("api/[controller]/[action]")]
-	public class TeamMemberController : ControllerBase
+	[Route("api/[controller]")]
+	public class TeamMembersController : ControllerBase
 	{
 		private readonly ITeamMemberService _teamMemberService;
 		private readonly DatabaseContext _databaseContext;
-		public TeamMemberController(ITeamMemberService teamMemberService, DatabaseContext databaseContext)
+		public TeamMembersController(ITeamMemberService teamMemberService, DatabaseContext databaseContext)
 		{
 			_teamMemberService = teamMemberService;
 			_databaseContext = databaseContext;
@@ -44,6 +44,50 @@ namespace ScrumMasterDashboard.Api.Controllers.v1
 			{
 				TeamMember? teamMember = await _databaseContext.TeamMembers.FindAsync(teamMemberId);
 				return teamMember?.Name ?? "Ikke fundet";
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+				throw;
+			}
+		}
+
+		[HttpPost]
+		public async Task<string> CreateTeamMember()
+		{
+			try
+			{
+				throw new NotImplementedException();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+				throw;
+			}
+		}
+
+		[HttpDelete]
+		[Route("{teamMemberId:int}")]
+		public async Task<string> DeleteTeamMember(int teamMemberId)
+		{
+			try
+			{
+				throw new NotImplementedException();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+				throw;
+			}
+		}
+
+		[HttpPut]
+		[Route("{teamMemberId:int}")]
+		public async Task<string> UpdateTeamMember(int teamMemberId)
+		{
+			try
+			{
+				throw new NotImplementedException();
 			}
 			catch (Exception e)
 			{
