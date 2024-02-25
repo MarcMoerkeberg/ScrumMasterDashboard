@@ -9,3 +9,4 @@ ScrumMasterDashboard.Api/bin/
 
 ScrumMasterDashboard.Api/obj/
 /ScrumMasterDashboard.Dto/obj
+/ScrumMasterDashboard.Dto/bin/Debug/net8.0
