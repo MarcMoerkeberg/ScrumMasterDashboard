@@ -5,7 +5,9 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "scrummasterdashboard.client", "scrummasterdashboard.client\scrummasterdashboard.client.esproj", "{30FAFC6F-D69A-422E-85CE-2D6A22D0C6B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrumMasterDashboard.Api", "ScrumMasterDashboard.Api\ScrumMasterDashboard.Api.csproj", "{D52FAF98-89E2-4AB4-9247-90A0C8B4E7D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScrumMasterDashboard.Api", "ScrumMasterDashboard.Api\ScrumMasterDashboard.Api.csproj", "{D52FAF98-89E2-4AB4-9247-90A0C8B4E7D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrumMasterDashboard.Dto", "ScrumMasterDashboard.Dto\ScrumMasterDashboard.Dto.csproj", "{21E0C3BF-36C9-4D25-99CA-4D4550B1AD03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{D52FAF98-89E2-4AB4-9247-90A0C8B4E7D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D52FAF98-89E2-4AB4-9247-90A0C8B4E7D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D52FAF98-89E2-4AB4-9247-90A0C8B4E7D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21E0C3BF-36C9-4D25-99CA-4D4550B1AD03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21E0C3BF-36C9-4D25-99CA-4D4550B1AD03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21E0C3BF-36C9-4D25-99CA-4D4550B1AD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21E0C3BF-36C9-4D25-99CA-4D4550B1AD03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
