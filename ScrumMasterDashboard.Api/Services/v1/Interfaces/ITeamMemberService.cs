@@ -1,9 +1,9 @@
-﻿using ScrumMasterDashboard.Api.Models.Entities;
+﻿using ScrumMasterDashboard.Dto;
 
 namespace ScrumMasterDashboard.Api.Services.v1.Interfaces
 {
-    public interface ITeamMemberService
+	public interface ITeamMemberService
 	{
-		Task<TeamMember> GetTeamMemberAsync(int teamMemberId);
+		Task<List<TeamMemberResponseDTO>> GetTeamAllMembers();
 	}
 }

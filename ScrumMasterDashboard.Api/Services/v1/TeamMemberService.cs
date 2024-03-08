@@ -1,10 +1,12 @@
-﻿using ScrumMasterDashboard.Api.Models.Entities;
+﻿using ScrumMasterDashboard.Api.Mappers;
+using ScrumMasterDashboard.Api.Models.Entities;
 using ScrumMasterDashboard.Api.Repositories.v1.Interfaces;
 using ScrumMasterDashboard.Api.Services.v1.Interfaces;
+using ScrumMasterDashboard.Dto;
 
 namespace ScrumMasterDashboard.Api.Services.v1
 {
-    public class TeamMemberService : ITeamMemberService
+	public class TeamMemberService : ITeamMemberService
 	{
 		private readonly ITeamMemberRepository _teamMemberRepository;
 
@@ -13,9 +15,12 @@ namespace ScrumMasterDashboard.Api.Services.v1
 			_teamMemberRepository = teamMemberRepository;
 		}
 
-		public Task<TeamMember> GetTeamMemberAsync(int teamMemberId)
+		public async Task<List<TeamMemberResponseDTO>> GetTeamAllMembers()
 		{
-			throw new NotImplementedException();
+			List<TeamMember> allTeamMembers = await _teamMemberRepository.GetAllTeamMembers();
+			List<TeamMemberResponseDTO> response = allTeamMembers.ToResponseDTO();
+			
+			return response;
 		}
 	}
 }

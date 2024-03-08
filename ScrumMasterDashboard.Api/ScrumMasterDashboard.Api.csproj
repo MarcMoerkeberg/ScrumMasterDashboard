@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ScrumMasterDashboard.Dto\ScrumMasterDashboard.Dto.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Resources\Shared.da-DK.Designer.cs">
       <DependentUpon>Shared.da-DK.resx</DependentUpon>
       <DesignTime>True</DesignTime>

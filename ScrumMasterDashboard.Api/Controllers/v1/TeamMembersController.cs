@@ -1,9 +1,9 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ScrumMasterDashboard.Api.DataAccess;
 using ScrumMasterDashboard.Api.Models.Entities;
 using ScrumMasterDashboard.Api.Services.v1.Interfaces;
+using ScrumMasterDashboard.Dto;
 
 namespace ScrumMasterDashboard.Api.Controllers.v1
 {
@@ -21,17 +21,17 @@ namespace ScrumMasterDashboard.Api.Controllers.v1
 		}
 
 		[HttpGet]
-		public async Task<List<TeamMember>> GetTeamMembers()
+		public async Task<List<TeamMemberResponseDTO>> GetAllTeamMembers()
 		{
 			try
 			{
-				List<TeamMember> teamMembers = await _databaseContext.TeamMembers.ToListAsync();
+				List<TeamMemberResponseDTO> allTeamMembers = await _teamMemberService.GetTeamAllMembers();
 
-				return teamMembers;
+				return allTeamMembers;
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				Console.WriteLine(e);
+				//TODO: Log exception and handle response
 				throw;
 			}
 		}

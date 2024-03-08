@@ -2,13 +2,19 @@
 
 namespace ScrumMasterDashboard.Dto
 {
-	public class TeamMemberDTO
+	public class TeamMemberBaseDTO
+	{
+		[Required, MinLength(1), MaxLength(100)]
+		public string Name { get; set; } = string.Empty;
+	}
+
+	public class TeamMemberRequestDTO : TeamMemberBaseDTO
+	{
+	}
+
+	public class TeamMemberResponseDTO : TeamMemberBaseDTO
 	{
 		[Required]
 		public int Id { get; set; }
-
-		[MaxLength(100)]
-		[MinLength(1)]
-		public string Name { get; set; } = string.Empty;
 	}
 }

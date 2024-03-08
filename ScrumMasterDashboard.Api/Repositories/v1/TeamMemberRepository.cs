@@ -1,13 +1,18 @@
-﻿using ScrumMasterDashboard.Api.Models.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using ScrumMasterDashboard.Api.DataAccess;
+using ScrumMasterDashboard.Api.Models.Entities;
 using ScrumMasterDashboard.Api.Repositories.v1.Interfaces;
 
 namespace ScrumMasterDashboard.Api.Repositories.v1
 {
-    public class TeamMemberRepository : ITeamMemberRepository
+	public class TeamMemberRepository : ITeamMemberRepository
 	{
-		public Task<TeamMember> GetTeamMemberAsync(string teamMemberId)
+		private readonly DatabaseContext _databaseContext;
+		public TeamMemberRepository(DatabaseContext databaseContext)
 		{
-			throw new NotImplementedException();
+			_databaseContext = databaseContext;
 		}
+
+		public async Task<List<TeamMember>> GetAllTeamMembers() => await _databaseContext.TeamMembers.ToListAsync();
 	}
 }
