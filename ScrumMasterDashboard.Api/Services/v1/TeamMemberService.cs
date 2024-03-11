@@ -15,10 +15,24 @@ namespace ScrumMasterDashboard.Api.Services.v1
 			_teamMemberRepository = teamMemberRepository;
 		}
 
+		/// <summary>
+		/// Returns a list of all team members as <see cref="TeamMemberResponseDTO"/>.
+		/// </summary>
 		public async Task<List<TeamMemberResponseDTO>> GetTeamAllMembers()
 		{
 			List<TeamMember> allTeamMembers = await _teamMemberRepository.GetAllTeamMembers();
 			List<TeamMemberResponseDTO> response = allTeamMembers.ToResponseDTO();
+			
+			return response;
+		}
+
+		/// <summary>
+		/// Returns the team member with the given <paramref name="teamMemberId"/> as <see cref="TeamMemberResponseDTO"/>.
+		/// </summary>
+		public async Task<TeamMemberResponseDTO> GetTeamMember(int teamMemberId)
+		{
+			TeamMember teamMember = await _teamMemberRepository.GetTeamMember(teamMemberId);
+			TeamMemberResponseDTO response = teamMember.ToResponseDTO();
 			
 			return response;
 		}

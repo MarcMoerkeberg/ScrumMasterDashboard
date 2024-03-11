@@ -5,5 +5,6 @@ namespace ScrumMasterDashboard.Api.Repositories.v1.Interfaces
 	public interface ITeamMemberRepository
 	{
 		Task<List<TeamMember>> GetAllTeamMembers();
+		Task<TeamMember> GetTeamMember(int teamMemberId);
 	}
 }

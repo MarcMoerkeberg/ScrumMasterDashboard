@@ -1,7 +1,6 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using ScrumMasterDashboard.Api.DataAccess;
-using ScrumMasterDashboard.Api.Models.Entities;
 using ScrumMasterDashboard.Api.Services.v1.Interfaces;
 using ScrumMasterDashboard.Dto;
 
@@ -38,16 +37,17 @@ namespace ScrumMasterDashboard.Api.Controllers.v1
 
 		[HttpGet]
 		[Route("{teamMemberId:int}")]
-		public async Task<string> GetTeamMember(int teamMemberId)
+		public async Task<TeamMemberResponseDTO> GetTeamMember(int teamMemberId)
 		{
 			try
 			{
-				TeamMember? teamMember = await _databaseContext.TeamMembers.FindAsync(teamMemberId);
-				return teamMember?.Name ?? "Ikke fundet";
+				TeamMemberResponseDTO teamMember = await _teamMemberService.GetTeamMember(teamMemberId);
+				
+				return teamMember;
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				Console.WriteLine(e);
+				//TODO: Log exception and handle response
 				throw;
 			}
 		}
