@@ -1,6 +1,5 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using ScrumMasterDashboard.Api.DataAccess;
 using ScrumMasterDashboard.Api.Services.v1.Interfaces;
 using ScrumMasterDashboard.Dto;
 
@@ -12,11 +11,9 @@ namespace ScrumMasterDashboard.Api.Controllers.v1
 	public class TeamMembersController : ControllerBase
 	{
 		private readonly ITeamMemberService _teamMemberService;
-		private readonly DatabaseContext _databaseContext;
-		public TeamMembersController(ITeamMemberService teamMemberService, DatabaseContext databaseContext)
+		public TeamMembersController(ITeamMemberService teamMemberService)
 		{
 			_teamMemberService = teamMemberService;
-			_databaseContext = databaseContext;
 		}
 
 		[HttpGet]
@@ -53,15 +50,17 @@ namespace ScrumMasterDashboard.Api.Controllers.v1
 		}
 
 		[HttpPost]
-		public async Task<string> CreateTeamMember()
+		public async Task<TeamMemberResponseDTO> CreateTeamMember(TeamMemberRequestDTO teamMemberRequestDTO)
 		{
 			try
 			{
-				throw new NotImplementedException();
+				TeamMemberResponseDTO createTeamMemberResponse = await _teamMemberService.CreateTeamMember(teamMemberRequestDTO);
+
+				return createTeamMemberResponse;
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				Console.WriteLine(e);
+				//TODO: Log exception and handle response
 				throw;
 			}
 		}

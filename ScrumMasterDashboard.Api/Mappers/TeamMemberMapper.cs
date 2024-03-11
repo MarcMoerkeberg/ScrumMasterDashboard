@@ -18,5 +18,18 @@ namespace ScrumMasterDashboard.Api.Mappers
 		{
 			return teamMembers.Select(ToResponseDTO).ToList();
 		}
+		
+		public static TeamMember ToDbModel(this TeamMemberRequestDTO requestDto)
+		{
+			return new TeamMember
+			{
+				Name = requestDto.Name
+			};
+		}
+		
+		public static List<TeamMember> ToDbModel(this List<TeamMemberRequestDTO> requestDto)
+		{
+			return requestDto.Select(ToDbModel).ToList();
+		}
 	}
 }

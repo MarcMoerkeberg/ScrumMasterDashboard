@@ -36,5 +36,17 @@ namespace ScrumMasterDashboard.Api.Services.v1
 			
 			return response;
 		}
+
+		/// <summary>
+		/// Creates a new team member with the given <paramref name="teamMemberRequestDTO"/>.
+		/// </summary>
+		/// <returns>The newly created <see cref="TeamMember"/> as a <see cref="TeamMemberResponseDTO"/>.</returns>
+		public async Task<TeamMemberResponseDTO> CreateTeamMember(TeamMemberRequestDTO teamMemberRequestDTO)
+		{
+			TeamMember teamMember = await _teamMemberRepository.CreateTeamMember(teamMemberRequestDTO.ToDbModel());
+			TeamMemberResponseDTO response = teamMember.ToResponseDTO();
+			
+			return response;
+		}
 	}
 }
