@@ -7,5 +7,6 @@ namespace ScrumMasterDashboard.Api.Services.v1.Interfaces
 		Task<List<TeamMemberResponseDTO>> GetTeamAllMembers();
 		Task<TeamMemberResponseDTO> GetTeamMember(int teamMemberId);
 		Task<TeamMemberResponseDTO> CreateTeamMember(TeamMemberRequestDTO teamMemberRequestDTO);
+		Task<bool> DeleteTeamMember(int teamMemberId);
 	}
 }

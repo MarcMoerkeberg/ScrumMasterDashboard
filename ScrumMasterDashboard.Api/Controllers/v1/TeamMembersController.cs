@@ -39,7 +39,7 @@ namespace ScrumMasterDashboard.Api.Controllers.v1
 			try
 			{
 				TeamMemberResponseDTO teamMember = await _teamMemberService.GetTeamMember(teamMemberId);
-				
+
 				return teamMember;
 			}
 			catch (Exception)
@@ -67,15 +67,17 @@ namespace ScrumMasterDashboard.Api.Controllers.v1
 
 		[HttpDelete]
 		[Route("{teamMemberId:int}")]
-		public async Task<string> DeleteTeamMember(int teamMemberId)
+		public async Task<bool> DeleteTeamMember(int teamMemberId)
 		{
 			try
 			{
-				throw new NotImplementedException();
+				bool deleteResult = await _teamMemberService.DeleteTeamMember(teamMemberId);
+
+				return deleteResult;
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				Console.WriteLine(e);
+				//TODO: Log exception and handle response
 				throw;
 			}
 		}

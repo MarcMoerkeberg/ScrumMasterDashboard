@@ -35,7 +35,7 @@ namespace ScrumMasterDashboard.Api.Repositories.v1
 		/// Inserts the <paramref name="teamMember"/> in the <see cref="DatabaseContext"/> asynchronously.<br/><br/>
 		/// Throws an <see cref="Exception"/> if it failed creating the <paramref name="teamMember"/>.
 		/// </summary>
-		/// <returns><see cref="TeamMember.Id"/> of the newly created entity.</returns>
+		/// <returns>The created <see cref="TeamMember"/> entity.</returns>
 		/// <exception cref="Exception"></exception>
 		public async Task<TeamMember> CreateTeamMember(TeamMember teamMember)
 		{
@@ -48,6 +48,18 @@ namespace ScrumMasterDashboard.Api.Repositories.v1
 			}
 
 			return createResult.Entity;
+		}
+
+		/// <summary>
+		/// Removes the <paramref name="teamMember"/> from the <see cref="DatabaseContext"/>.
+		/// </summary>
+		/// <returns>True if the <paramref name="teamMember"/> was successfully removed.</returns>
+		public async Task<bool> DeleteTeamMember(TeamMember teamMember)
+		{
+			_databaseContext.TeamMembers.Remove(teamMember);
+			int numberOfDeletedEntities = await _databaseContext.SaveChangesAsync();
+
+			return numberOfDeletedEntities.Equals(1);
 		}
 	}
 }

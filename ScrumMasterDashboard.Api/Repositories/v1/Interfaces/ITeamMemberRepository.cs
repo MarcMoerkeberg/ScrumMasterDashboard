@@ -7,5 +7,6 @@ namespace ScrumMasterDashboard.Api.Repositories.v1.Interfaces
 		Task<List<TeamMember>> GetAllTeamMembers();
 		Task<TeamMember> GetTeamMember(int teamMemberId);
 		Task<TeamMember> CreateTeamMember(TeamMember teamMember);
+		Task<bool> DeleteTeamMember(TeamMember teamMember);
 	}
 }
