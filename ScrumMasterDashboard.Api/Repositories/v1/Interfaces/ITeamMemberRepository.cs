@@ -1,4 +1,5 @@
-﻿using ScrumMasterDashboard.Api.Models.Entities;
+﻿using ScrumMasterDashboard.Api.DataAccess;
+using ScrumMasterDashboard.Api.Models.Entities;
 
 namespace ScrumMasterDashboard.Api.Repositories.v1.Interfaces
 {
@@ -29,5 +30,13 @@ namespace ScrumMasterDashboard.Api.Repositories.v1.Interfaces
 		/// </summary>
 		/// <returns>True if the <paramref name="teamMember"/> was successfully removed.</returns>
 		Task<bool> DeleteTeamMember(TeamMember teamMember);
+
+		/// <summary>
+		/// Uses <paramref name="teamMemberToUpdate"/> to update the existing entry in the <see cref="DatabaseContext"/>.
+		/// </summary>
+		/// <param name="teamMemberToUpdate">Will replace the existing <see cref="TeamMember"/>.</param>
+		/// <returns>The updated <see cref="TeamMember"/> entity.</returns>
+		/// <exception cref="Exception"></exception>
+		Task<TeamMember> UpdateTeamMember(TeamMember teamMemberToUpdate);
 	}
 }

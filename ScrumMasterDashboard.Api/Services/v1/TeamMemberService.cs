@@ -1,6 +1,5 @@
 ﻿using ScrumMasterDashboard.Api.Mappers;
 using ScrumMasterDashboard.Api.Models.Entities;
-using ScrumMasterDashboard.Api.Repositories.v1;
 using ScrumMasterDashboard.Api.Repositories.v1.Interfaces;
 using ScrumMasterDashboard.Api.Services.v1.Interfaces;
 using ScrumMasterDashboard.Dto;
@@ -52,10 +51,7 @@ namespace ScrumMasterDashboard.Api.Services.v1
 			return deleteResult;
 		}
 
-		/// <summary>
-		/// Deletes the team member with the given <paramref name="teamMemberId"/>.
-		/// </summary>
-		/// <returns>The deletion result from <see cref="TeamMemberRepository.DeleteTeamMember"/>.</returns>
+		/// <inheritdoc cref="ITeamMemberService.UpdateTeamMember"/>
 		public async Task<TeamMemberResponseDTO> UpdateTeamMember(int teamMemberId, TeamMemberRequestDTO teamMemberRequestDTO)
 		{
 			TeamMember teamMemberToUpdate = await _teamMemberRepository.GetTeamMember(teamMemberId);

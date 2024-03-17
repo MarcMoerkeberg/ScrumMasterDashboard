@@ -84,15 +84,17 @@ namespace ScrumMasterDashboard.Api.Controllers.v1
 
 		[HttpPut]
 		[Route("{teamMemberId:int}")]
-		public async Task<string> UpdateTeamMember(int teamMemberId)
+		public async Task<TeamMemberResponseDTO> UpdateTeamMember(int teamMemberId, TeamMemberRequestDTO teamMemberRequestDTO)
 		{
 			try
 			{
-				throw new NotImplementedException();
+				TeamMemberResponseDTO updatedTeamMember = await _teamMemberService.UpdateTeamMember(teamMemberId, teamMemberRequestDTO);
+
+				return updatedTeamMember;
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				Console.WriteLine(e);
+				//TODO: Log exception and handle response
 				throw;
 			}
 		}

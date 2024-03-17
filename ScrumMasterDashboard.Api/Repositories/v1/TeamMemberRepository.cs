@@ -15,8 +15,6 @@ namespace ScrumMasterDashboard.Api.Repositories.v1
 		}
 
 		/// <inheritdoc cref="ITeamMemberRepository.GetAllTeamMembers"/>
-		/// Returns all <see cref="TeamMember"/> in the db asynchronously as a list.
-		/// </summary>
 		public async Task<List<TeamMember>> GetAllTeamMembers() => await _databaseContext.TeamMembers.ToListAsync();
 
 		/// <inheritdoc cref="ITeamMemberRepository.GetTeamMember"/>
@@ -48,6 +46,20 @@ namespace ScrumMasterDashboard.Api.Repositories.v1
 			int numberOfDeletedEntities = await _databaseContext.SaveChangesAsync();
 
 			return numberOfDeletedEntities.Equals(1);
+		}
+
+		/// <inheritdoc cref="ITeamMemberRepository.UpdateTeamMember"/>
+		public async Task<TeamMember> UpdateTeamMember(TeamMember teamMemberToUpdate)
+		{
+			EntityEntry<TeamMember> updateResult = _databaseContext.TeamMembers.Update(teamMemberToUpdate);
+			int numberOfUpdatedEntities = await _databaseContext.SaveChangesAsync();
+
+			if (numberOfUpdatedEntities != 1 || updateResult.Entity != teamMemberToUpdate)
+			{
+				throw new Exception("Failed to update team member.");
+			}
+
+			return updateResult.Entity;
 		}
 	}
 }

@@ -27,5 +27,11 @@ namespace ScrumMasterDashboard.Api.Services.v1.Interfaces
 		/// </summary>
 		/// <returns>The deletion result from <see cref="ITeamMemberRepository.DeleteTeamMember"/>.</returns>
 		Task<bool> DeleteTeamMember(int teamMemberId);
+
+		/// <summary>
+		/// Deletes the team member with the given <paramref name="teamMemberId"/>.
+		/// </summary>
+		/// <returns>The deletion result from <see cref="ITeamMemberRepository.DeleteTeamMember"/>.</returns>
+		Task<TeamMemberResponseDTO> UpdateTeamMember(int teamMemberId, TeamMemberRequestDTO teamMemberRequestDTO);
 	}
 }
