@@ -16,9 +16,7 @@ namespace ScrumMasterDashboard.Api.Services.v1
 			_teamMemberRepository = teamMemberRepository;
 		}
 
-		/// <summary>
-		/// Returns a list of all team members as <see cref="TeamMemberResponseDTO"/>.
-		/// </summary>
+		/// <inheritdoc cref="ITeamMemberService.GetTeamAllMembers"/>
 		public async Task<List<TeamMemberResponseDTO>> GetTeamAllMembers()
 		{
 			List<TeamMember> allTeamMembers = await _teamMemberRepository.GetAllTeamMembers();
@@ -27,9 +25,7 @@ namespace ScrumMasterDashboard.Api.Services.v1
 			return response;
 		}
 
-		/// <summary>
-		/// Returns the team member with the given <paramref name="teamMemberId"/> as <see cref="TeamMemberResponseDTO"/>.
-		/// </summary>
+		/// <inheritdoc cref="ITeamMemberService.GetTeamMember"/>
 		public async Task<TeamMemberResponseDTO> GetTeamMember(int teamMemberId)
 		{
 			TeamMember teamMember = await _teamMemberRepository.GetTeamMember(teamMemberId);
@@ -38,10 +34,7 @@ namespace ScrumMasterDashboard.Api.Services.v1
 			return response;
 		}
 
-		/// <summary>
-		/// Creates a new team member with the given <paramref name="teamMemberRequestDTO"/>.
-		/// </summary>
-		/// <returns>The newly created <see cref="TeamMember"/> as a <see cref="TeamMemberResponseDTO"/>.</returns>
+		/// <inheritdoc cref="ITeamMemberService.CreateTeamMember"/>
 		public async Task<TeamMemberResponseDTO> CreateTeamMember(TeamMemberRequestDTO teamMemberRequestDTO)
 		{
 			TeamMember teamMember = await _teamMemberRepository.CreateTeamMember(teamMemberRequestDTO.ToDbModel());
@@ -50,16 +43,28 @@ namespace ScrumMasterDashboard.Api.Services.v1
 			return response;
 		}
 
-		/// <summary>
-		/// Deletes the team member with the given <paramref name="teamMemberId"/>.
-		/// </summary>
-		/// <returns>The deletion result from <see cref="TeamMemberRepository.DeleteTeamMember"/>.</returns>
+		/// <inheritdoc cref="ITeamMemberService.DeleteTeamMember"/>
 		public async Task<bool> DeleteTeamMember(int teamMemberId)
 		{
 			TeamMember teamMemberToDelete = await _teamMemberRepository.GetTeamMember(teamMemberId);
 			bool deleteResult = await _teamMemberRepository.DeleteTeamMember(teamMemberToDelete);
 
 			return deleteResult;
+		}
+
+		/// <summary>
+		/// Deletes the team member with the given <paramref name="teamMemberId"/>.
+		/// </summary>
+		/// <returns>The deletion result from <see cref="TeamMemberRepository.DeleteTeamMember"/>.</returns>
+		public async Task<TeamMemberResponseDTO> UpdateTeamMember(int teamMemberId, TeamMemberRequestDTO teamMemberRequestDTO)
+		{
+			TeamMember teamMemberToUpdate = await _teamMemberRepository.GetTeamMember(teamMemberId);
+			teamMemberToUpdate.UpdateProperties(teamMemberRequestDTO.ToDbModel());
+
+			TeamMember updatedTeamMember = await _teamMemberRepository.UpdateTeamMember(teamMemberToUpdate);
+			TeamMemberResponseDTO response = updatedTeamMember.ToResponseDTO();
+
+			return response;
 		}
 	}
 }
