@@ -47,7 +47,14 @@ namespace ScrumMasterDashboard.Api.Helpers
 
 			services.AddDbContext<DatabaseContext>(options =>
 			{
-				options.UseSqlServer(appSettings.ConnectionStrings.Database);
+				options.UseSqlServer(appSettings.ConnectionStrings.Database, sqlServerOptions =>
+				{
+					sqlServerOptions.EnableRetryOnFailure(
+						maxRetryCount: 5,
+						maxRetryDelay: TimeSpan.FromSeconds(20),
+						errorNumbersToAdd: null
+					);
+				});
 			});
 		}
 
