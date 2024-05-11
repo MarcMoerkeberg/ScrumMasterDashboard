@@ -17,6 +17,7 @@ app.UseAuthorization();
 app.MapControllers();
 app.ApplySwagger();
 app.UseLocalization();
+app.UseExceptionHandler();
 
 if (app.Environment.IsDevelopment())
 {

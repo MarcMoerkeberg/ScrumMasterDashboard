@@ -1,9 +1,11 @@
 ﻿using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using ScrumMasterDashboard.Api.DataAccess;
+using ScrumMasterDashboard.Api.Exceptions;
 using ScrumMasterDashboard.Api.Models.AppSettings;
 using ScrumMasterDashboard.Api.Models.Enums;
 using ScrumMasterDashboard.Api.Resources;
@@ -142,6 +144,15 @@ namespace ScrumMasterDashboard.Api.Helpers
 			{
 				configureOptions = SupportedCultures.LocalizationOptions;
 			});
+		}
+
+		/// <summary>
+		/// Adds global error handling with <see cref="GlobalExceptionHandler"/> and <see cref="ProblemDetails"/>.
+		/// </summary>
+		public static void AddExceptionHandling(this IServiceCollection services)
+		{
+			services.AddExceptionHandler<GlobalExceptionHandler>();
+			services.AddProblemDetails();
 		}
 
 		/// <summary>
