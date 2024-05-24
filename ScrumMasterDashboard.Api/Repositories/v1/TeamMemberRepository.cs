@@ -22,7 +22,7 @@ namespace ScrumMasterDashboard.Api.Repositories.v1
 		{
 			TeamMember? teamMemberResult = await _databaseContext.TeamMembers.FindAsync(teamMemberId);
 
-			return teamMemberResult ?? throw new Exception($"No team member exists with id: {teamMemberId}.");
+			return teamMemberResult ?? throw new KeyNotFoundException($"No team member exists with id: {teamMemberId}.");
 		}
 
 		/// <inheritdoc cref="ITeamMemberRepository.CreateTeamMember"/>

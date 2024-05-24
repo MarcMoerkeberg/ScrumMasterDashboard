@@ -22,7 +22,7 @@ app.UseExceptionHandler();
 
 if (app.Environment.IsDevelopment())
 {
-	app.UseDeveloperExceptionPage();
+	app.UseDeveloperExceptionPage(); // Remove to get a production-like errors
 }
 
 app.Run();
