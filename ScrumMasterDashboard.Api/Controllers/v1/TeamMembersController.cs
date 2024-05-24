@@ -19,84 +19,45 @@ namespace ScrumMasterDashboard.Api.Controllers.v1
 		[HttpGet]
 		public async Task<List<TeamMemberResponseDTO>> GetAllTeamMembers()
 		{
-			try
-			{
-				List<TeamMemberResponseDTO> allTeamMembers = await _teamMemberService.GetTeamAllMembers();
+			List<TeamMemberResponseDTO> allTeamMembers = await _teamMemberService.GetTeamAllMembers();
 
-				return allTeamMembers;
-			}
-			catch (Exception)
-			{
-				//TODO: Log exception and handle response
-				throw;
-			}
+			return allTeamMembers;
 		}
 
 		[HttpGet]
 		[Route("{teamMemberId:int}")]
 		public async Task<TeamMemberResponseDTO> GetTeamMember(int teamMemberId)
 		{
-			try
-			{
-				TeamMemberResponseDTO teamMember = await _teamMemberService.GetTeamMember(teamMemberId);
+			TeamMemberResponseDTO teamMember = await _teamMemberService.GetTeamMember(teamMemberId);
 
-				return teamMember;
-			}
-			catch (Exception)
-			{
-				//TODO: Log exception and handle response
-				throw;
-			}
+			return teamMember;
 		}
 
 		[HttpPost]
 		public async Task<TeamMemberResponseDTO> CreateTeamMember(TeamMemberRequestDTO teamMemberRequestDTO)
 		{
-			try
-			{
-				TeamMemberResponseDTO createTeamMemberResponse = await _teamMemberService.CreateTeamMember(teamMemberRequestDTO);
+			TeamMemberResponseDTO createTeamMemberResponse = await _teamMemberService.CreateTeamMember(teamMemberRequestDTO);
 
-				return createTeamMemberResponse;
-			}
-			catch (Exception)
-			{
-				//TODO: Log exception and handle response
-				throw;
-			}
+			return createTeamMemberResponse;
 		}
 
 		[HttpDelete]
 		[Route("{teamMemberId:int}")]
 		public async Task<bool> DeleteTeamMember(int teamMemberId)
 		{
-			try
-			{
-				bool deleteResult = await _teamMemberService.DeleteTeamMember(teamMemberId);
+			bool deleteResult = await _teamMemberService.DeleteTeamMember(teamMemberId);
 
-				return deleteResult;
-			}
-			catch (Exception)
-			{
-				//TODO: Log exception and handle response
-				throw;
-			}
+			//Should return NoContent() (http 204) instead of the boolean result if successful
+			return deleteResult;
 		}
 
 		[HttpPut]
 		[Route("{teamMemberId:int}")]
 		public async Task<TeamMemberResponseDTO> UpdateTeamMember(int teamMemberId, TeamMemberRequestDTO teamMemberRequestDTO)
 		{
-			try
-			{
-				TeamMemberResponseDTO updatedTeamMember = await _teamMemberService.UpdateTeamMember(teamMemberId, teamMemberRequestDTO);
+			TeamMemberResponseDTO updatedTeamMember = await _teamMemberService.UpdateTeamMember(teamMemberId, teamMemberRequestDTO);
 
-				return updatedTeamMember;
-			}
-			catch (Exception)
-			{
-				//TODO: Log exception and handle response
-				throw;
-			}
+			return updatedTeamMember;
 		}
 	}
 }
