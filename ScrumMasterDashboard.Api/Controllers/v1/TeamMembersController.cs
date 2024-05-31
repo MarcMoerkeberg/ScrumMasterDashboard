@@ -43,12 +43,11 @@ namespace ScrumMasterDashboard.Api.Controllers.v1
 
 		[HttpDelete]
 		[Route("{teamMemberId:int}")]
-		public async Task<bool> DeleteTeamMember(int teamMemberId)
+		public async Task<IActionResult> DeleteTeamMember(int teamMemberId)
 		{
-			bool deleteResult = await _teamMemberService.DeleteTeamMember(teamMemberId);
+			await _teamMemberService.DeleteTeamMember(teamMemberId);
 
-			//Should return NoContent() (http 204) instead of the boolean result if successful
-			return deleteResult;
+			return NoContent();
 		}
 
 		[HttpPut]
